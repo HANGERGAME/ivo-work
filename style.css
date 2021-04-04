@@ -1,3 +1,13 @@
+div{
+	text-align: center;
+}
+body{
+		background-image: url('forest.jpg');
+	}
+body{
+	background-image: url('spotlight.png');
+		
+}
 h1{
 	text-align: center;
 	color: white;
@@ -8,9 +18,7 @@ div{
 
 p,label{
 	color: white;
-}
-body{
-	background-image: url('forest.jpg');*/
+	text-align: center;
 }
 
 input, textarea{

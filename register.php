@@ -28,10 +28,6 @@ if (isset($_POST['player_name'])) {
   	$player_years = $_POST['player_years'];
   	$player_gender = $_POST['player_gender'];
 
-
-var_dump($_POST);
-
-
 	$sql = "INSERT INTO hanger_game (player_name, player_password, player_email, player_years, player_gender) VALUES ('$player_name', '$player_password' , '$player_email', '$player_years','$player_gender')";
 
 
