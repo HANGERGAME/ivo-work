@@ -7,3 +7,4 @@
 	<a type="button" class="btn btn-outline-light" href="game.php">Game</a>
 </body>
 </html>
+

@@ -1,7 +1,7 @@
 <?php include "includes/head.php"?>
 <body>
 	<h1>Register</h1>
-<form action="#" method="post">
+<form action="#" method="post" class="form" >
 	<p>First name</p><input type="text" name="player_name">
 	<p>Age</p><input type="text" name="
 	player_years">

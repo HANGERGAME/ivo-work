@@ -1,7 +1,7 @@
 <?php include "includes/head.php"?>
 <body>
 	<h1>Login</h1>
-<form action="#" method="post">
+<form action="#" method="post" class="form">
 	<p>First name</p><input type="text" name="player_name">
 	<p>Password</p><input type="Password" name="player_password">
 	<p></p>

@@ -1,70 +1,81 @@
 <?php include "includes/head.php";?>
 
-<body>
+<body class="secondbackground">
 <h1>Hang Game</h1>
 <p class="font-weight-bold">Suggest a word:</p>
-<img src="image.png" height="400" weight="400">
-<p>_ _ _ _ _ _ _</p>
-
 <div>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(А)" href="#">А</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Б)" href="#">Б</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(В)" href="#">В</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Г)" href="#">Г</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Д)" href="#">Д</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ж)" href="#">Ж</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(З)" href="#">З</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(И)" href="#">И</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Й)" href="#">Й</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(К)" href="#">К</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Л)" href="#">Л</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(М)" href="#">М</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Н)" href="#">Н</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(О)" href="#">О</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(П)" href="#">П</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Р)" href="#">Р</a>
-	<p></p> 
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(С)" href="#">С</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Т)" href="#">Т</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(У)" href="#">У</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ф)" href="#">Ф</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Х)" href="#">Х</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ч)" href="#">Ч</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ш)" href="#">Ш</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Щ)" href="#">Щ</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ъ)" href="#">Ъ</a>
-	<p></p> 
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ь)" href="#">Ь</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Ю)" href="#">Ю</a>
-	<a type="button" class="btn btn-outline-light" onclick="wordcheck(Я)" href="#">Я</a>	
-	</div>
-	<a type="button" class="btn btn-outline-light" href="index.php">Back</a>
-</body>
-	
-<?php
+<img src="image.png" height="400" weight="400">
+</div>
+
+
+
+<?php 
+$hiddenWord=[];
+$decodedWord = preg_split('//u', $_SESSION['word'], null, PREG_SPLIT_NO_EMPTY);//ARRAY
+
+
 
 session_start();
  
- //$_SESSION[$error]++; 
- //var_dump($_SESSION);
+if (isset($_GET['letter'])) {
 
-function wordcheck($letter){
-	$word = $_SESSION['word'];
-	$position = strpos($word, $letter);
-	//var_dump($letter);
+   $word = $_SESSION['word'];
+  
+   $position = mb_strpos($word, $_GET['letter']);
 
-	if ($poistion == false) {
-		$_SESSION['error']++;
-} else{
-	echo $position;
+   var_dump($position);
+
+
+   if ($position === false) {
+      echo "ERROR";
+      $_SESSION['error']++;
+   }else{
+      $_SESSION['hiddenWord'][$position] = $decodedWord[$position];
+   }
 }
-}
+
+var_dump($_SESSION['hiddenWord']);
 
 
+echo '<p>'.implode(" ",$_SESSION['hiddenWord']).'</p>';
 
-// <!-- showletter function  -->
-// <!-- letter i position  -->
-// <!-- echo position i letter -->
-// <!--  -->
+?>
 
-
+<div>
+<form action="game.php" method="get">
+  <input type="submit"  name="letter" value="а" class="btn btn-light" class="letter">
+  <input type="submit"  name="letter" value="б" class="btn btn-light">
+   <input type="submit" name="letter" value="в" class="btn btn-light">
+   <input type="submit" name="letter" value="г" class="btn btn-light">
+   <input type="submit" name="letter" value="д" class="btn btn-light">
+   <input type="submit" name="letter" value="е" class="btn btn-light">
+   <input type="submit" name="letter" value="ж" class="btn btn-light">
+   <input type="submit" name="letter" value="з" class="btn btn-light">
+   <input type="submit" name="letter" value="и" class="btn btn-light">
+   <input type="submit" name="letter" value="й" class="btn btn-light">
+   <input type="submit" name="letter" value="к" class="btn btn-light">
+   <input type="submit" name="letter" value="л" class="btn btn-light">
+   <input type="submit" name="letter" value="м" class="btn btn-light">
+   <input type="submit" name="letter" value="н" class="btn btn-light">
+   <input type="submit" name="letter" value="о" class="btn btn-light">
+   <p></p>
+   <input type="submit" name="letter" value="п" class="btn btn-light">
+   <input type="submit" name="letter" value="р" class="btn btn-light">
+   <input type="submit" name="letter" value="с" class="btn btn-light">
+   <input type="submit" name="letter" value="т" class="btn btn-light">
+   <input type="submit" name="letter" value="у" class="btn btn-light">
+   <input type="submit" name="letter" value="ф" class="btn btn-light">
+   <input type="submit" name="letter" value="х" class="btn btn-light">
+   <input type="submit" name="letter" value="ц" class="btn btn-light">
+   <input type="submit" name="letter" value="ч" class="btn btn-light">
+   <input type="submit" name="letter" value="ш" class="btn btn-light">
+   <input type="submit" name="letter" value="щ" class="btn btn-light">
+   <input type="submit" name="letter" value="ъ" class="btn btn-light">
+   <input type="submit" name="letter" value="ь" class="btn btn-light">
+   <input type="submit" name="letter" value="ю" class="btn btn-light">
+   <p></p>
+   <input type="submit" name="letter" value="я" class="btn btn-light">
+</form> 
+</div>
+</body>
+	
