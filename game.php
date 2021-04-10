@@ -4,40 +4,41 @@
 <h1>Hang Game</h1>
 <p class="font-weight-bold">Suggest a word:</p>
 <div>
-<img src="image.png" height="400" weight="400">
+<img src="<?php echo $_SESSION['error'] ?>.png" height="400" weight="400">
 </div>
-
-
 
 <?php 
 $hiddenWord=[];
 $decodedWord = preg_split('//u', $_SESSION['word'], null, PREG_SPLIT_NO_EMPTY);//ARRAY
-
-
+$error = "da";
 
 session_start();
  
 if (isset($_GET['letter'])) {
 
    $word = $_SESSION['word'];
+
   
-   $position = mb_strpos($word, $_GET['letter']);
-
-   var_dump($position);
-
-
-   if ($position === false) {
-      echo "ERROR";
-      $_SESSION['error']++;
-   }else{
-      $_SESSION['hiddenWord'][$position] = $decodedWord[$position];
+  for ($i=0; $i < count($decodedWord) ; $i++) { 
+   if ($decodedWord[$i] == $_GET['letter']) {
+      $error = "ne";
+      $hiddenWord[$i] = $_GET['letter'];
+      $_SESSION['hiddenWord'][$i] = $decodedWord[$i];
+      } 
+   } 
+   if ($error == "da") {
+   $_SESSION['error']++;
    }
 }
 
+
+
+
 var_dump($_SESSION['hiddenWord']);
 
-
 echo '<p>'.implode(" ",$_SESSION['hiddenWord']).'</p>';
+
+echo $_SESSION['error'];
 
 ?>
 
