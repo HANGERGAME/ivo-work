@@ -1,4 +1,35 @@
-<?php include "includes/head.php"?>
+
+<?php include "includes/head.php";?>
+<?php include "includes/connection.php" ;?>
+
+<?php
+// check
+if (!empty($_POST['player_name'])) {
+	
+	$userName = $_POST['player_name'];
+	$userPassword = $_POST['player_password'];
+
+
+	//READ
+	$read_query = "SELECT * FROM `players` WHERE `player_name` = '$userName' AND `player_password` = '$userPassword'";
+
+	$result = mysqli_query($conn, $read_query);
+
+	if (mysqli_num_rows($result) > 0) {
+		$player = mysqli_fetch_assoc($result);
+		session_start();
+		$_SESSION['player_id'] = $player['player_id'];
+		$_SESSION['player_name'] = $player['player_name'];
+		header('Location:pregame.php');
+
+		
+	}else{
+		echo "<p>INCCORECT username/password!</p>";
+
+	}
+}
+?>
+
 <body>
 	<h1>Login</h1>
 <form action="#" method="post" class="form">
@@ -10,20 +41,6 @@
 </body>
 </html>
 
-<?php include "includes/connection.php" ;
-if (isset($_POST['user_name'])) {
-  
- 	$userName = $_POST['player_name'];
-	$userPassword = $_POST['player_password'];
-	$userEmail = $_POST['player_email'];
 
-	$sql = "INSERT INTO hanger_game (player_name, player_password, player_email) VALUES ('$player_name', '$player_password' , '$player_email')";
-
-
-	mysqli_query($conn, $sql);
-    $conn->close();
-    header( "Location: leederbord.php" ); 
-
-    
-}
-?>
+	
+	

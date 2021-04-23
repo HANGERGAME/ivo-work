@@ -1,49 +1,30 @@
-<?php include "includes/head.php";?>
-
-<body class="secondbackground">
-<h1>Hang Game</h1>
-<p class="font-weight-bold">Suggest a word:</p>
-<div>
-<img src="<?php echo $_SESSION['error'] ?>.png" height="400" weight="400">
-</div>
 
 <?php 
-$hiddenWord=[];
+include "includes/head.php";
+include 'functions.php';
+?>
+
+<a type="button" class="btn btn-outline-light" href="leederbord.php">Leederbord</a>
+<a type="button" class="btn btn-outline-light" href="pregame.php">Play game</a>
+
+<?php 
+if (!isset($_SESSION)) { session_start(); }
 $decodedWord = preg_split('//u', $_SESSION['word'], null, PREG_SPLIT_NO_EMPTY);//ARRAY
-$error = "da";
 
-session_start();
- 
 if (isset($_GET['letter'])) {
-
-   $word = $_SESSION['word'];
-
-  
-  for ($i=0; $i < count($decodedWord) ; $i++) { 
-   if ($decodedWord[$i] == $_GET['letter']) {
-      $error = "ne";
-      $hiddenWord[$i] = $_GET['letter'];
-      $_SESSION['hiddenWord'][$i] = $decodedWord[$i];
-      } 
-   } 
-   if ($error == "da") {
-   $_SESSION['error']++;
-   }
+   lettercheck($decodedWord, $_GET['letter']);
 }
-
-
-
-
-var_dump($_SESSION['hiddenWord']);
-
-echo '<p>'.implode(" ",$_SESSION['hiddenWord']).'</p>';
-
-echo $_SESSION['error'];
 
 ?>
 
 <div>
-<form action="game.php" method="get">
+<img src="<?php echo $_SESSION['error'] ?>.png" height="400" weight="400">
+<p><?php echo implode(" ",$_SESSION['hiddenWord']). "<p></p>ERROR: ".$_SESSION['error']; ?></p>
+
+</div>
+
+<div class="letter"> 
+<form class="letter" action="game.php" method="get">
   <input type="submit"  name="letter" value="а" class="btn btn-light" class="letter">
   <input type="submit"  name="letter" value="б" class="btn btn-light">
    <input type="submit" name="letter" value="в" class="btn btn-light">
@@ -79,4 +60,15 @@ echo $_SESSION['error'];
 </form> 
 </div>
 </body>
-	
+
+
+<?php
+if (!in_array('_', $_SESSION['hiddenWord'])) {
+  echo "Congratulations!";
+  $end = hrtime(true);
+  echo ($end - $_SESSION['time']) / 1000000000;
+}elseif ($_SESSION['error'] > 6) {
+  echo "game over";
+}
+?>
+

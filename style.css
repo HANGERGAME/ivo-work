@@ -1,26 +1,30 @@
 
+.letter{
+	text-align: center;
+}
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+...
 div{
 	text-align: center;
 }
 
-
-div{
-	text-align: center;
-}
-
-body{
+/*body{*/
 	/*background-image: url('forest.jpg');*/
-}
-
+/*}*/
+body{}
 .secondbackground{
-	/*background-image: url('back.jpg');*/
-	background-color: green;
+background-color: green;
 	
+	}
 
-	
-		
-}
-h1{
+h1,h2,h3{
 	text-align: center;
 	color: white;
 }
@@ -49,10 +53,22 @@ input, textarea{
 }
 
 /*input[type=text], select {*/
-  /*width: 100%;*/
-  /*padding: 5px 0 5px 0;*/
-  /*border: 1px solid black;*/
-  /*border-radius: 20px;*/
+/*width: 100%;*/
+/*padding: 5px 0 5px 0;*/
+/*border: 1px solid black;*/
+/*border-radius: 20px;*/
+/*}*/
+/*input[type=password]{*/
+	/*width: 100%;*/
+	/*padding: 5px 0 5px 0;*/
+	/*border: 1px solid black;*/
+	/*border-radius: 20px;*/
+/*}*/
+/*input[type=submit]{*/
+	/*border-radius: 20px;*/
+	/*padding: 5px 0 5px 0;*/
+	/*width: 10%;*/
+	/*margin-left: 325px;*/
 /*}*/
 
 textarea {
