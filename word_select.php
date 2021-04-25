@@ -25,7 +25,7 @@ $result = mysqli_query($conn, $sql);
 		$_SESSION['clickedLetters']=[];
 		$_SESSION['hiddenWord']=[]; 
 		$_SESSION['error']=0; 
-		$_SESSION['gameLevel_Id']= $game_level; 
+		$_SESSION['game_level_id']= $game_level; 
 		$_SESSION['startTime'] =  hrtime(true) / 1000000000;
 
 		for ($i=0; $i < strlen($_SESSION['word']); $i++) { 

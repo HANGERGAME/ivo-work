@@ -21,7 +21,7 @@ function saveResult(){
 include "connection.php" ;
  	$player_id = $_SESSION['player_id'];
 	$time = $_SESSION['time'];
-	$lavel = $_SESSION['gameLevel_Id'];
+	$lavel = $_SESSION['game_level_id'];
 
 	$sql = "INSERT INTO leederbord (time, player_id, game_level_id) VALUES ('$time', '$player_id', '$lavel')";
 
