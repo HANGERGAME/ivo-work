@@ -1,32 +1,16 @@
-<?php
-
-
-
- session_start(); 
-
- $_SESSION['word'] = 'монитор'; 
- //$_SESSION['time_start'] = date('H:i:s'); 
- $_SESSION['error'] = 0; 
- $_SESSION['hiddenWord']=[]; 
- //$_SESSION['time'] = hrtime(true);
- for ($i=0; $i < mb_strlen($_SESSION['word']); $i++) { 
- $_SESSION['hiddenWord'][$i] = '_'; 
- } 
-
- //var_dump($_SESSION['hiddenWord']); 
-
+<?php  
+include "includes/head.php";
+include "includes/connection.php";
+include "includes/loginCheck.php" ;
 ?>
 
-<?php  include "includes/head.php" ;?>
-<?php  include "includes/connection.php" ;?>
-<?php  include "includes/loginCheck.php" ;?>
-
-	<h3> PREGAME </h3>
+<h3> PREGAME </h3>
 <form  action="word_select.php" method="post">
 	<?php
 		$game_genre = "SELECT game_genre_id, game_genre_name FROM game_genres";
-		$result = mysqli_query( $conn, $game_genre );?>
-			
+		$result = mysqli_query( $conn, $game_genre );
+		?>
+
 			<div class="btn-group">
 				<select class="form-control" name="game_genre">
 					
@@ -35,6 +19,7 @@
 			if( mysqli_num_rows( $result ) > 0 ){
 				while( $row = mysqli_fetch_assoc( $result ) ){
 					echo "<option value=".$row['game_genre_id']." >".$row['game_genre_name']."</option>";
+
 				}
 			} 
 			else {
@@ -64,7 +49,7 @@
 			?>
 		</select>
 		<p>
-		<input type="submit" value="play" href="game.php">
+		<input type="submit" value="play" name="submit">
 	</form>
 
   		<a type="button" class="btn btn-outline-light" href="index.php">Back</a>

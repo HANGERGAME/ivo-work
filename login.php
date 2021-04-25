@@ -1,8 +1,9 @@
 
-<?php include "includes/head.php";?>
-<?php include "includes/connection.php" ;?>
+<?php 
+include "includes/head.php";
+include "includes/connection.php";
 
-<?php
+if (isset($_SESSION)) { session_destroy(); }
 // check
 if (!empty($_POST['player_name'])) {
 	
